@@ -32,15 +32,14 @@ def vis_prosent(stemmer):
        print(f"{parti}: {prosent:.1f}%")
         # print(f"{parti}: {antall} {prosent} stemmer")
 
+
 def falskt_valg(partier, stemmer):
     weights = [0.31, 0.14, 0.27, 0.053, 0.053, 0.017, 0.041, 0.047, 0.053 ]
     random_valg = random.choices(partier, weights=weights, k=1)[0]
     stemmer[random_valg] + 1
-    
     print(f"Stemmene er telt og {random_valg} Vant")
 
     return True
-         
         
     # votes = random.choices(random_valg, num_choices)
     # print(f"Valget endte opp med: {votes}")
@@ -64,9 +63,10 @@ def hovedporgram():
 
     while True:
         fortsett = falskt_valg(partier, stemmer)
-        if not fortsett:
-            break
-
+        if fortsett <= 40:
+            return True
+        elif not fortsett:
+           break
     resultat(stemmer)
 
 hovedporgram()
