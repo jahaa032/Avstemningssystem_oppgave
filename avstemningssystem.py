@@ -19,10 +19,30 @@ def sjekk_stemmer(partier, stemmer):
     
     return True
 
+
+def falskt_valg(partier, stemmer):
+    intervaller = [
+        (0.31, 0.35),
+        (0.14, 0.18),
+        (0.27, 0.31),
+        (0.053, 0.057),
+        (0.053, 0.057),
+        (0.017, 0.021),
+        (0.041, 0.045),
+        (0.047, 0.051),
+        (0.053, 0.057),
+    ]
+    weights = [random.uniform(low, high) for low, high in intervaller]
+    random_valg = random.choices(partier, weights=weights, k=1)[0]
+    stemmer[random_valg] + 1
+    print(f"Stemmene er telt og {random_valg} Vant, {weights}")
+
+    return True
+
 def resultat(stemmer):
     print("\n--- Stemme resultat ---")
     for parti, antall in stemmer.items():
-        print(f"{parti}: {antall} stemmer")
+        print(f"{parti:.2f}: {antall} stemmer")
         
 def vis_prosent(stemmer):
     print("\n--- Stemme resultat ---")
@@ -33,13 +53,17 @@ def vis_prosent(stemmer):
         # print(f"{parti}: {antall} {prosent} stemmer")
 
 
-def falskt_valg(partier, stemmer):
-    weights = [0.31, 0.14, 0.27, 0.053, 0.053, 0.017, 0.041, 0.047, 0.053 ]
-    random_valg = random.choices(partier, weights=weights, k=1)[0]
-    stemmer[random_valg] + 1
-    print(f"Stemmene er telt og {random_valg} Vant")
+# if stemme.lower() == 'q':
+#         print("Hadde")
+#         return False
 
-    return True
+#     if stemme in partier:
+#         stemmer[stemme] += 1
+#         print(f"Du har stemt på {stemme}!\n")
+#     else:
+#         print("Du kan ikke stemme på det, prøv igjen.\n")
+    
+#     return True
         
     # votes = random.choices(random_valg, num_choices)
     # print(f"Valget endte opp med: {votes}")
@@ -63,10 +87,12 @@ def hovedporgram():
 
     while True:
         fortsett = falskt_valg(partier, stemmer)
-        if fortsett <= 40:
-            return True
-        elif not fortsett:
+        if not fortsett:
            break
+
+    while resultat <= 169:
+        stemmer
+        
     resultat(stemmer)
 
 hovedporgram()
