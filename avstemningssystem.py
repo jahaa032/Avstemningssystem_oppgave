@@ -37,14 +37,11 @@ def falskt_valg(partier, stemmer):
     random_valg = random.choices(partier, weights=weights, k=1)[0]
     stemmer[random_valg] + 1
     
-    for stemmer in partier:
-        if random_valg >= 40:
-            print(f"Stemmene er telt og {random_valg} Vant")
-            return False
-        else:
-            return True
+    print(f"Stemmene er telt og {random_valg} Vant")
 
-
+    return True
+         
+        
     # votes = random.choices(random_valg, num_choices)
     # print(f"Valget endte opp med: {votes}")
 
